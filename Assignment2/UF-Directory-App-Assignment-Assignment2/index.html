@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    <!--Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+  </head>
+
+  <body ng-app="directoryApp">
+    <div class="container">
+      <div class="row">
+        <h1 class = "homeTitle">UF Directory App</h1>
+      </div>
+      <div class = "container">
+      <div class="row" ng-controller="ListingsController">
+        <div class="input-group col-md-12 searchBar"  id="searchBar">
+          <!--
+
+              Implement a way to filter through listings using the search bar
+
+            -->
+          <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
+          <input type="text" class="form-control searchBar" ng-model = "search" placeholder="Search Code or BuildingName">
+        </div>
+        <div class="col-md-4">
+
+          <div class="tableWrapper">
+            <table class="table table-striped table-hover">
+              <tr>
+                <th>Code</th>
+                <th>Building Name</th>
+                <th>delete</th>
+              </tr>
+              <!--
+
+                  Fill in the rest of the table:
+                      * populate the rows with the code and name of each listing
+                      * include a way to remove individual listings
+
+                -->
+
+              <tr ng-repeat = "personInfo in listings | filter: search" ng-click = "showDetails(listings.indexOf(personInfo))">
+                <td>{{personInfo.code}}</td>
+                <td>{{personInfo.name}}</td>
+                <td><i class="fa fa-times closeButton" ng-click = "deleteListing(listings.indexOf(personInfo))" aria-hidden="true"></i></td>
+              </tr>
+            </table>
+          </div>
+
+          <button type="button" class ="btn btn-info newBuildingButton" ng-click = "open()">New Building</button>
+          <div ng-show ="showModal" close="cancel()">
+            <div class="modal-header">
+                <h4>New Building info</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                  <label>Code :
+                    <input type="text" ng-model="input.code"></input>
+                  </label>
+                </div>
+                <label>Building Name  :
+                  <input type="text" class = "newInputTextBox" ng-model="input.BuildingName"></input>
+                </label>
+                <label>Latitude :
+                  <input type="number" class = "newInputTextBox" ng-model="input.Latitude"></input>
+                </label>
+                <label>Longitude :
+                  <input type="number" class = "newInputTextBox" ng-model="input.Longitude"></input>
+                </label>
+                <label>Address :
+                  <input type="text" class = "newInputTextBox" ng-model="input.Address"></input>
+                </label>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-success" ng-click="addListing(); ok()">Okay</button>
+              <button class="btn" ng-click="cancel()">Cancel</button>
+            </div>
+          </div>
+      </div>
+        <div class="col-md-8">
+          <div class="jumbotron">
+            <h2 id = "DetailedInfoHeader"><b></h>Detailed Information</b></h2>
+            <!--
+
+              Include a way to display detailed information about an individual listing:
+                   * consider how to use ng-click within the the table to implement this feature
+
+             -->
+              <h3> Code: {{detaile.code}}</h3>
+              <h3> Building Name: {{detaile.name}}</h3>
+              <h3>Coordinates</h3>
+              <h3> Latitude: {{detaile.coordinates.latitude}}</h3>
+              <h3> Longitude: {{detaile.coordinates.longitude}}</h3>
+              <h3> Address: {{detaile.address}}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+    <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+    <script src="app.js"></script>
+    <script src="listingController.js"></script>
+    <script src="listingFactory.js"></script>
+  </body>
+</html>

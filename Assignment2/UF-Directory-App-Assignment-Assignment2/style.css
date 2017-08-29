@@ -1,0 +1,42 @@
+
+body{
+  font-family: 'Abel', sans-serif;
+}
+
+.homeTitle{
+  padding-left: 390px;
+  font-size: 65px
+}
+
+#searchBar {
+  margin: 15px 10px;
+}
+
+.tableWrapper {
+  max-height: 400px;
+  overflow: auto;
+}
+
+.closeButton{
+ font-size:150px;
+ color:#f40707;
+}
+
+.newInputTextBox{
+  padding-left: 50px;
+}
+
+.newBuildingButton{
+  margin-top: 15px;
+}
+
+.searchBar{
+  height:50px;
+}
+.jumbotron{
+
+}
+
+#DetailedInfoHeader{
+  margin-top:-20px; 
+}
